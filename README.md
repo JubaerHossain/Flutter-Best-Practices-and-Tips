@@ -615,4 +615,139 @@ someFuture.then((_) => someFunc());
 
 In this example, the underscore indicates that the variable `DATA_TYPE VARIABLE` is not used. This makes the code more readable and can help to prevent bugs.
 
+**Proper naming for magic numbers**
 
+Magic numbers are literal values that appear in your code without any explanation. This can make your code difficult to read and understand, and it can also make it difficult to maintain.
+
+**Example:**
+
+```dart
+// Don't
+SvgPicture.asset(
+  Images.frameWhite,
+  height: 13.0,
+  width: 13.0,
+);
+
+// Do
+final _frameIconSize = 13.0;
+SvgPicture.asset(
+   Images.frameWhite,
+   height: _frameIconSize,
+   width: _frameIconSize,
+);
+```
+
+In the first example, the magic number `13.0` appears twice, without any explanation. In the second example, we have defined a named constant `_frameIconSize` to represent the magic number. This makes the code more readable and maintainable.
+
+**Understanding the concept of constraints in Flutter**
+
+Constraints in Flutter are objects that represent the size and position of a widget. Constraints are passed down from parent widgets to child widgets.
+
+The thumb rule of a Flutter layout is that constraints go down, sizes go up, and the parent sets the position. This means that parent widgets determine the size and position of their child widgets.
+
+**Widgets choice matters**
+
+The choice of widgets can have a big impact on the performance of your Flutter app. For example, using a `ListView` instead of a `Column` for a long list of items can improve performance.
+
+**Use packages only when necessary**
+
+Packages can be a great way to add new features and functionality to your Flutter app. However, it is important to use packages only when necessary, as they can add overhead to your app and reduce performance.
+
+**Linting**
+
+Linting is a process of analyzing your code for potential errors and style violations. Flutter comes with a built-in linter that can help you to improve the quality of your code.
+
+To enable linting, add the following to your `analysis_options.yml` file:
+
+```
+linter:
+  rules:
+    - avoid_print
+```
+
+This will enable the `avoid_print` lint rule, which will warn you if you use the `print()` function in your code.
+
+**Do something after the build completes can improve performance**
+
+If you need to do something after the build completes, you can use the `WidgetsBinding.instance.addPostFrameCallback()` method. This method will call the given callback after the next frame is rendered.
+
+**Example:**
+
+```dart
+class MyWidget extends StatefulWidget {
+  @override
+  _MyWidgetState createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // Do something after the build completes.
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+```
+
+**Use SafeArea**
+
+The `SafeArea` widget insets its child by removing padding required to OS controls like the status bar and bottom navigation buttons. This can help to ensure that your content is always visible to the user.
+
+**Example:**
+
+```dart
+class MyWidget extends StatefulWidget {
+  @override
+  _MyWidgetState createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(),
+      body: SafeArea(
+        child: Container(),
+      ),
+    );
+  }
+}
+```
+
+**Use keys to improve Flutter performance**
+
+Keys can be used to improve the performance of Flutter apps by helping the framework to identify and update widgets more efficiently.
+
+**Example:**
+
+```dart
+class MyWidget extends StatefulWidget {
+  @override
+  _MyWidgetState createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  final GlobalKey _key = GlobalKey();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      key: _key,
+    );
+  }
+}
+```
+
+In this example, we have used the `GlobalKey` class to create a key for the `Container` widget. This key can be used to identify the `Container` widget in the widget tree.
+
+**Analyze & Decrease Application Size**
+
+When developing a Flutter app, it is important to analyze and decrease the application size. This can be done by using the Flutter development tool
